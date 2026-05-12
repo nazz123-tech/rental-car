@@ -23,7 +23,9 @@ export default function CarCard({ car }: { car: Car }) {
       </div>
 
       <p className="text-xs text-gray-500 mb-6 truncate">
-        {car.address} | {car.rentalCompany} | {car.type}
+        {car.address} 
+        {car.rentalCompany}
+        {car.type}
       </p>
 
       <Link

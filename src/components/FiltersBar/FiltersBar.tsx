@@ -14,7 +14,7 @@ export default function FiltersBar() {
   const [minMileage, setMinMileage] = useState(searchParams.get("minMileage") || "");
   const [maxMileage, setMaxMileage] = useState(searchParams.get("maxMileage") || "");
 
-  const { data: brands, isLoading } = useQuery<string[]>({
+  const { data: brands, isError } = useQuery<string[]>({
     queryKey: ["brands"],
     queryFn: fetchBrands,
     staleTime: Infinity,
@@ -44,7 +44,7 @@ export default function FiltersBar() {
           className="bg-[#F7F7FB] rounded-[14px] px-[18px] py-[14px] outline-none min-w-[224px] text-[#121417] font-medium appearance-none cursor-pointer"
         >
           <option value="">Choose car brand</option>
-          {!isLoading &&
+          {!isError &&
             brands?.map((b) => (
               <option key={b} value={b}>
                 {b}
