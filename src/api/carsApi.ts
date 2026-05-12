@@ -16,18 +16,20 @@ const API_URL = 'https://car-rental-api.goit.global';
 export const fetchCars = async ({ pageParam = 1, queryKey }: FetchCarsArgs): Promise<Car[]> => {
   const [, filters] = queryKey;
 
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   const { data } = await axios.get<ApiResponse>(`${API_URL}/cars`, {
     params: {
       page: pageParam,
       limit: 12,
-      brand: filters.brand || undefined,
+      brand: filters.brand|| undefined,
       rentalPrice: filters.rentalPrice || undefined,
       minMileage: filters.minMileage || undefined,
       maxMileage: filters.maxMileage || undefined,
     },
   });
 
-  return data.cars; 
+  return data.cars;
 };
 export const fetchBrands = async () : Promise<string[]>=>{
     const response = await axios.get(`${API_URL}/brands`)

@@ -6,18 +6,19 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchCars } from "@/api/carsApi";
 import CarCard from "../CarCard/CarCard";
 import { Car, CarFilters } from "@/types";
+import { Loader } from "@/app/loader";
 
 export default function CarsGrid() {
   const searchParams = useSearchParams();
 
   const filters: CarFilters = {
-    brand: searchParams.get("make") || "",
+    brand: searchParams.get("brand") || "",
     rentalPrice: searchParams.get("rentalPrice") || "",
     minMileage: searchParams.get("minMileage") || "",
     maxMileage: searchParams.get("maxMileage") || "",
   };
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+  const { data, fetchNextPage, isLoading, hasNextPage, isFetchingNextPage, isError} =
     useInfiniteQuery({
       queryKey: ["cars", filters] as const,
       queryFn: ({ pageParam = 1, queryKey }) =>
@@ -28,15 +29,18 @@ export default function CarsGrid() {
       },
     });
 
-  if (status === "error") {
+  if (isError) {
     return (
-      <p className="text-center py-10 text-red-500">Something went wrong...</p>
+      <p className="text-center py-10 font-semibold text-red-500">Something went wrong...</p>
     );
   }
+  
 
   return (
     <section>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-12 mb-24">
+      {isLoading ? 
+      <Loader></Loader>
+       : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-12 mb-24">
         {data?.pages.map((page, i) => (
           <React.Fragment key={i}>
             {page.map((car: Car) => (
@@ -45,6 +49,8 @@ export default function CarsGrid() {
           </React.Fragment>
         ))}
       </div>
+      }
+      
 
       {hasNextPage && (
         <div className="flex justify-center pb-20">
@@ -53,7 +59,7 @@ export default function CarsGrid() {
             disabled={isFetchingNextPage}
             className="text-[#3470FF] font-medium underline hover:text-[#0B44CD] disabled:text-gray-400 transition-colors"
           >
-            {isFetchingNextPage ? "Loading..." : "Load more"}
+            {isFetchingNextPage ? <Loader/> : "Load more"}
           </button>
         </div>
       )}

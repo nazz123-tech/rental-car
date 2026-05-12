@@ -16,7 +16,7 @@ export default function CarCard({ car }: { car: Car }) {
 
       <div className="flex justify-between items-center mb-2 font-medium">
         <span>
-          {car.brand} <span className="text-blue-600">{car.model}</span>,{" "}
+          {car.brand} <span className="text-btn">{car.model}</span>,{" "}
           {car.year}
         </span>
         <span>${car.rentalPrice}</span>
@@ -29,7 +29,7 @@ export default function CarCard({ car }: { car: Car }) {
       <Link
         href={`/catalog/${car.id}`}
         target="_blank"
-        className="w-full py-3 bg-blue-600 text-white text-center rounded-xl font-semibold hover:bg-blue-700 mt-auto"
+        className="w-full py-3 bg-btn text-white text-center rounded-xl font-semibold hover:bg-btn-hover mt-auto"
       >
         Read more
       </Link>

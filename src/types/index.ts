@@ -13,7 +13,7 @@ export interface Car {
   rentalPrice: number;
   rentalCompany: string;
   address: string;
-  rentalConditions: string;
+  rentalConditions: string[];
   mileage: number;
 }
 
@@ -25,7 +25,3 @@ export interface CarFilters {
 }
 
 
-export interface FetchCarsArgs {
-  pageParam?: number;
-  queryKey: [string, CarFilters];
-}
