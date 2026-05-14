@@ -72,11 +72,10 @@
     @apply !m-0 flex-grow flex flex-col justify-between px-3 pb-4;
   }
 
-/
+
   .react-datepicker__week {
     @apply flex justify-between ;
   }
-
   
   .react-datepicker__day {
  

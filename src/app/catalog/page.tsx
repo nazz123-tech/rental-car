@@ -1,14 +1,14 @@
 import { Suspense } from "react";
 import CarsGrid from "@/components/CarsGrid/CarsGrid";
 import FiltersBar from "@/components/FiltersBar/FiltersBar";
-import { Loader } from "../loader";
+import { CarsGridSkeleton, FiltersSkeleton } from "@/components/Skeletons/Skeletons";
 
 export default function CatalogPage() {
   return (
     <>
       <Suspense
         fallback={
-          <Loader/>  
+        <FiltersSkeleton/>
         }
       >
         <FiltersBar />
@@ -16,7 +16,7 @@ export default function CatalogPage() {
 
       <Suspense
         fallback={
-          <Loader/>  
+           <CarsGridSkeleton/>
         }
       >
         <CarsGrid />

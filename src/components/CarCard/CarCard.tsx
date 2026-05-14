@@ -9,8 +9,8 @@ export default function CarCard({ car }: { car: Car }) {
         <Image
           src={car.img}
           alt={`${car.brand} ${car.model}`}
-          fill
           className="object-cover"
+          fill
         />
       </div>
 
@@ -33,7 +33,7 @@ export default function CarCard({ car }: { car: Car }) {
       <Link
         href={`/catalog/${car.id}`}
         target="_blank"
-        className="w-full py-3 bg-btn text-white text-center rounded-xl font-semibold hover:bg-btn-hover mt-auto"
+        className="w-full py-3 bg-btn text-white text-center rounded-xl font-semibold hover:bg-btn-hover mt-auto transition-colors duration-200"
       >
         Read more
       </Link>

@@ -7,7 +7,7 @@ export const Header = ()=>{
   const activeClass = "text-btn-hover";
   const hoverClass = "hover:text-btn-hover";
     return (
-      <header className="bg-badges border border-b border-badges w-[1440] h-[68] flex flex-row justify-between px-[120] py-[24] mx-auto items-center">
+      <header className="bg-badges border-b-badges w-[1440] h-[68] flex flex-row justify-between px-[120] py-[24] mx-auto items-center">
         <svg
           width="102"
           height="16"

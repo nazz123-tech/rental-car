@@ -5,9 +5,10 @@ import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 interface CustomSelectProps {
   label: string;
   placeholder: string;
-  options: string[] | number[];
+  options: (string | number)[];
   value: string | number;
-  onChange: (value: T) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange: (value: any) => void;
   width?: string;
   isPrice?: boolean;
 }
@@ -23,22 +24,22 @@ export default function CustomSelect({
 }: CustomSelectProps) {
   return (
     <div style={{ width }} className="flex flex-col gap-2 relative">
-      <label className="text-[14px] leading-[18px] text-[#8A8A89] font-medium ml-1">
+      <label className="text-[12px] leading-[1.33] text-gray-custom font-normal ml-1">
         {label}
       </label>
 
       <Listbox value={value } onChange={onChange}>
         {({ open }) => (
           <div className="relative">
-            <Listbox.Button className="z-99 relative w-full h-[48px] cursor-pointer rounded-[14px] bg-[#F7F7FB] px-4 text-left focus:outline-none text-[18px] font-medium text-[#121417]">
+            <Listbox.Button className="relative w-full h-[44px] cursor-pointer rounded-[12px] bg-inputs px-4 text-left focus:outline-none  text-[16px] font-medium text-main">
               <span className="block truncate">
                 {value ? (isPrice ? `To ${value}$` : value) : placeholder}
               </span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-4">
                 {open ? (
-                  <ChevronUpIcon className="h-5 w-5 text-[#121417]" />
+                  <ChevronUpIcon className="h-5 w-5 text-main" />
                 ) : (
-                  <ChevronDownIcon className="h-5 w-5 text-[#121417]" />
+                  <ChevronDownIcon className="h-5 w-5 text-main" />
                 )}
               </span>
             </Listbox.Button>
@@ -51,7 +52,7 @@ export default function CustomSelect({
             >
               <Listbox.Options 
                 style={{ width, height: '272px' }}
-                className="select-options-container custom-scrollbar py-4"
+                className="select-options-container custom-scrollbar border-none py-4"
               >
                 {options.map((option, index) => (
                   <Listbox.Option
@@ -59,8 +60,8 @@ export default function CustomSelect({
                     value={option}
                     className={({ active, selected }) => `
                       relative cursor-pointer select-none py-2 px-[18px] text-[16px] leading-[20px] transition-colors
-                      ${active || selected ? 'text-[#121417]' : 'text-[rgba(18,20,23,0.2)]'}
-                      ${selected ? 'font-semibold' : 'font-medium'}
+                      ${active || selected ? 'text-[#121417]' : 'text-gray-custom'}
+                      ${selected && 'font-medium'}
                     `}
                   >
                     {isPrice ? option : option}
