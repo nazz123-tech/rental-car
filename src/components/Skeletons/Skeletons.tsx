@@ -1,6 +1,6 @@
 
 export const FiltersSkeleton = () => (
-  <div className="flex flex-wrap gap-4 items-end animate-pulse mb-10">
+  <div className="flex flex-wrap gap-4 items-end animate-pulse mb-10 w-[1440] mx-auto">
     <div className="flex flex-col gap-2">
       <div className="h-4 bg-gray-200 rounded w-16 ml-1" />
       <div className="h-[44px] w-[204px] bg-gray-200 rounded-[12px]" />
@@ -19,7 +19,7 @@ export const FiltersSkeleton = () => (
 
 
 export const CarsGridSkeleton = () => (
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-12">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-12 w-[1440] mx-auto">
     {[...Array(8)].map((_, i) => (
       <div key={i} className="flex flex-col gap-4 animate-pulse">
         <div className="w-full h-[268px] bg-gray-200 rounded-[14px]" />

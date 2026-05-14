@@ -3,6 +3,8 @@ import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header/Header";
 import { QueryProvider } from "../components/QueryProvider/QueryProvider";
+import { Slide, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -33,7 +35,22 @@ export default function RootLayout({
       <body className="antialiased min-h-full flex flex-col ">
         <QueryProvider>
           <Header />
-          <main className="grow bg-white">{children}</main>
+          <main className="grow bg-white">
+            <ToastContainer
+              position="top-center"
+              autoClose={1500}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={false}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              transition={Slide}
+            />
+            {children}
+          </main>
         </QueryProvider>
       </body>
     </html>

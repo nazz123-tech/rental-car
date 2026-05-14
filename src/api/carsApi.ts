@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Car, CarFilters } from '@/types';
+import { Car, CarFilters, BookingPayload } from '@/types';
 
 interface FetchCarsArgs {
   pageParam?: number;
@@ -38,4 +38,14 @@ export const fetchBrands = async () : Promise<string[]>=>{
 export const fetchCarById = async (id: string): Promise<Car> => {
 const response = await axios.get<Car>(`${API_URL}/cars/${id}`);
   return response.data;
+};
+
+
+export const placeBooking = async (
+  carId: string,
+  payload: BookingPayload,
+) => {
+  const { data } = await axios.post(`${API_URL}/cars/${carId}/booking-requests`, payload);
+
+  return data;
 };

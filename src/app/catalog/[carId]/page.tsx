@@ -38,7 +38,7 @@ const CarDetails = ({ params }: PageProps) => {
     <div className="flex flex-row gap-[72] mx-auto w-[1440] px-[120] pt-[84]">
       <div className="flex flex-col gap-[40]">
         <Image src={car.img} alt={car.model} width={640} height={512} className="rounded-[19px]" />
-        <BookingForm/>
+        <BookingForm carId={car.id}/>
       </div>
       <div>
         <div>

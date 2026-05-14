@@ -23,5 +23,10 @@ export interface CarFilters {
   minMileage?: string;
   maxMileage?: string;
 }
+export interface BookingPayload {
+  name: string;
+  email: string;
+  comment: string;
+}
 
 
