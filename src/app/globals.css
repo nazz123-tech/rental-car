@@ -38,8 +38,95 @@
   --font-main: var(--font-family);
   --font-inter: var(--second-family);
 }
+@layer components {
+  
+  .react-datepicker {
+ 
+    width: 276px !important; 
+    height: 284px !important;
+    
+
+    @apply !border-blue-400 !rounded-2xl !shadow-xl !font-inter !overflow-visible !mt-2 !bg-white flex flex-col;
+  }
+ 
+  .react-datepicker__month-container {
+    @apply !w-full !h-full flex flex-col;
+  }
+
+  .react-datepicker__header {
+    @apply !bg-white !border-b-0 !p-0 !rounded-t-2xl flex flex-col;
+  }
 
 
+  .react-datepicker__day-names {
+    @apply flex justify-between px-3 !mb-3 !border-b-blue-600;
+  }
+
+  .react-datepicker__day-name {
+ 
+    @apply !text-gray-400 !font-bold !uppercase !text-[10px] !w-8 !m-0 !text-center !leading-8;
+  }
+
+
+  .react-datepicker__month {
+    @apply !m-0 flex-grow flex flex-col justify-between px-3 pb-4;
+  }
+
+/
+  .react-datepicker__week {
+    @apply flex justify-between ;
+  }
+
+  
+  .react-datepicker__day {
+ 
+    @apply !text-gray-700 !w-8 !h-8 !leading-8 !m-0 !rounded-full  transition-colors flex items-center justify-center text-sm;
+  }
+
+  .react-datepicker__day--selected {
+    @apply !bg-blue-600 !text-white !font-bold !rounded-full ;
+  }
+
+  .react-datepicker__day--outside-month {
+    @apply !text-gray-300;
+  }
+  .react-datepicker__day--today{
+    @apply hover:!text-white
+  }
+
+  .react-datepicker__triangle {
+    @apply !fill-white !stroke-blue-400;
+  }
+
+  .select-options-container {
+    @apply absolute z-50 mt-1 overflow-y-auto bg-white;
+  position: absolute; 
+  top: 100%; 
+  left: 0;
+  z-index: 999; 
+  
+  width: 100%;
+  background: white;
+  border: 1px solid var(--inputs);
+  border-radius: 12px;
+  box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.02);
+  margin-top: 4px; 
+}
+.custom-scrollbar::-webkit-scrollbar {
+    width: 18px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--gray-light);
+    border-radius: 10px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
 body {
   background-color: var(--bg);
   color: var(--main);

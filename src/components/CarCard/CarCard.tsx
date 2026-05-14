@@ -22,11 +22,13 @@ export default function CarCard({ car }: { car: Car }) {
         <span>${car.rentalPrice}</span>
       </div>
 
-      <p className="text-xs text-gray-500 mb-6 truncate">
-        {car.address} 
-        {car.rentalCompany}
-        {car.type}
+      <p className="text-xs text-gray-500 mb-[4] truncate">
+        {car.address}
       </p>
+      <p className="text-xs text-gray-500 mb-6 truncate">
+      {car.type} | {car.mileage}
+      </p>
+      
 
       <Link
         href={`/catalog/${car.id}`}

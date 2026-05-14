@@ -40,7 +40,7 @@ export default function CarsGrid() {
     <section>
       {isLoading ? 
       <Loader></Loader>
-       : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-12 mb-24">
+       : <div className="w-[1440] px-[120] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-12 mb-24">
         {data?.pages.map((page, i) => (
           <React.Fragment key={i}>
             {page.map((car: Car) => (
@@ -57,7 +57,7 @@ export default function CarsGrid() {
           <button
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
-            className="text-[#3470FF] font-medium underline hover:text-[#0B44CD] disabled:text-gray-400 transition-colors"
+            className="text-black font-medium border border-btn rounded-xl hover:border-btn-hover py-[12] px-[51] disabled:text-gray-400 transition-colors cursor-pointer"
           >
             {isFetchingNextPage ? <Loader/> : "Load more"}
           </button>

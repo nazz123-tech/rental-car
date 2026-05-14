@@ -12,7 +12,7 @@ export interface Car {
   functionalities: string[];
   rentalPrice: number;
   rentalCompany: string;
-  address: string;
+  address:string;
   rentalConditions: string[];
   mileage: number;
 }

@@ -30,10 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable} h-full`}>
-      <body className="font-sans antialiased min-h-full flex flex-col">
+      <body className="antialiased min-h-full flex flex-col ">
         <QueryProvider>
           <Header />
-          <main className="grow">{children}</main>
+          <main className="grow bg-white">{children}</main>
         </QueryProvider>
       </body>
     </html>

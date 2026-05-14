@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 
 export const Header = ()=>{
   const pathname=usePathname();
-  const activeAndHoverClass = "text-btn-hover";
+  const activeClass = "text-btn-hover";
+  const hoverClass = "hover:text-btn-hover";
     return (
       <header className="bg-badges border border-b border-badges w-[1440] h-[68] flex flex-row justify-between px-[120] py-[24] mx-auto items-center">
         <svg
@@ -52,8 +53,8 @@ export const Header = ()=>{
           <ul className="flex flex-row gap-[32] font-medium">
             <li>
               <Link
-                className={`transition-colors duration-200 hover:${activeAndHoverClass} ease-in-out ${
-                  pathname === "/" ? activeAndHoverClass : ""
+                className={`transition-colors duration-200 ${hoverClass} ease-in-out ${
+                  pathname === "/" ? activeClass : ""
                 }`}
                 href={"/"}
               >
@@ -62,8 +63,8 @@ export const Header = ()=>{
             </li>
             <li>
               <Link
-                className={`transition-colors duration-200 hover:${activeAndHoverClass} ease-in-out ${
-                  pathname === "/catalog" ? activeAndHoverClass : ""
+                className={`transition-colors duration-200 ${hoverClass} ease-in-out ${
+                  pathname === "/catalog" ? activeClass : ""
                 }`}
                 href={"/catalog"}
               >

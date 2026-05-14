@@ -5,7 +5,7 @@ import { Loader } from "../loader";
 
 export default function CatalogPage() {
   return (
-    <main className="container mx-auto px-4 pt-12">
+    <>
       <Suspense
         fallback={
           <Loader/>  
@@ -21,6 +21,8 @@ export default function CatalogPage() {
       >
         <CarsGrid />
       </Suspense>
-    </main>
+    </>
+      
+    
   );
 }
