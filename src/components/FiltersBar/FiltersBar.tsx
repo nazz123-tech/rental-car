@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBrands } from "@/api/carsApi";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CustomSelect from "../CustomSelect/CustomSelect";
 
 export default function FiltersBar() {

@@ -26,7 +26,7 @@ export interface CarFilters {
 export interface BookingPayload {
   name: string;
   email: string;
-  comment: string;
+  comment?:string;
 }
 
 

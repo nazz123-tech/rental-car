@@ -5,9 +5,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <section 
-      className="w-full min-h-[calc(100vh-68px)] bg-[url('/Picture.jpg')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-end mx-auto"
-    >
+    <section className="w-full min-h-[calc(100vh-68px)] bg-[url('/Picture.jpg')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-end mx-auto">
       <div className="flex flex-col pb-[80px] items-center text-center">
         <h1 className="text-white/90 font-bold text-[60px] leading-[1.2] mb-[16px]">
           Find your perfect rental car

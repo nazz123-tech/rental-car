@@ -1,50 +1,8 @@
-import React from "react";
-import { Formik, Form, Field, useField, useFormikContext } from "formik";
+import { Formik, Form, Field, FieldProps } from "formik";
 import DatePicker from "react-datepicker";
-import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { placeBooking } from "@/api/carsApi";
 import { toast } from "react-toastify";
-
-const FormikDatePicker = ({ name }: { name: string }) => {
-  const { setFieldValue } = useFormikContext();
-  const [field] = useField(name);
-
-  return (
-    <div className="relative w-full">
-      <DatePicker
-        selected={field.value}
-        onChange={(val: Date | null) => setFieldValue(name, val)}
-        dateFormat="dd/MM/yyyy"
-        className="w-[576] h-[48px] bg-inputs border-none rounded-[12px] px-[20px] text-main font-medium outline-none"
-        placeholderText="Booking date"
-        popperPlacement="bottom"
-        calendarStartDay={1}
-        renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
-          <div className="flex items-center justify-between px-3 py-2 bg-white rounded-t-xl border-b border-btn">
-            <button
-              type="button"
-              onClick={decreaseMonth}
-              className="text-btn text-xl"
-            >
-              ‹
-            </button>
-            <span className="text-main font-semibold">
-              {format(date, "MMMM yyyy")}
-            </span>
-            <button
-              type="button"
-              onClick={increaseMonth}
-              className="text-btn text-xl"
-            >
-              ›
-            </button>
-          </div>
-        )}
-      />
-    </div>
-  );
-};
 
 interface BookingFormProps {
   carId: string;
@@ -64,30 +22,33 @@ const initialValues: BookingFormValues = {
 };
 
 export default function BookingForm({ carId }: BookingFormProps) {
-  const handleSubmit = async(
+  const handleSubmit = async (
     values: BookingFormValues,
     { resetForm }: { resetForm: () => void },
   ) => {
     try {
-    await placeBooking(carId, {
-      name: values.name,
-      email: values.email,
-      comment: values.comment,
-    });
-    toast.success(`Booking request is sent. We will contact you at ${values.email}`, {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-    resetForm();
-  } catch {
-    toast.error('Error. Please try later.');
-  }
+      await placeBooking(carId, {
+        name: values.name,
+        email: values.email,
+        comment: values.comment,
+      });
+      toast.success(
+        `Booking request is sent. We will contact you at ${values.email}`,
+        {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        },
+      );
+      resetForm();
+    } catch {
+      toast.error("Error. Please try later.");
+    }
   };
   return (
     <div className="flex justify-center items-center py-10">
@@ -115,9 +76,28 @@ export default function BookingForm({ carId }: BookingFormProps) {
               className="w-full h-[48px] bg-inputs rounded-[12px] px-[20px] mb-[16px] outline-none text-main font-medium placeholder:text-gray-custom "
             />
 
-            <div className="mb-[16px]">
-              <FormikDatePicker name="bookingDate" />
-            </div>
+            <Field name="bookingDate">
+              {({ form, field }: FieldProps<BookingFormValues>) => (
+                <div className="date-picker-container">
+                  <DatePicker
+                    name={field.name}
+                    onBlur={field.onBlur}
+                    selected={form.values.bookingDate}
+                    onChange={(date: Date | null) => {
+                      form.setFieldValue(field.name, date);
+                    }}
+                    placeholderText="Booking date"
+                    dateFormat="dd.MM.yyyy"
+                    className="w-full h-[48px] bg-inputs rounded-[12px] px-[18px] outline-none text-main font-medium placeholder:text-gray-custom"
+                    wrapperClassName="w-full mb-4"
+                    calendarClassName="react-datepicker"
+                    popperPlacement="bottom"
+                    popperClassName="custom-popper"
+                    minDate={new Date()}
+                  />
+                </div>
+              )}
+            </Field>
 
             <Field
               as="textarea"

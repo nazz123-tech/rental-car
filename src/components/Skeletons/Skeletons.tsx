@@ -1,4 +1,3 @@
-
 export const FiltersSkeleton = () => (
   <div className="flex flex-wrap gap-4 items-end animate-pulse mb-10 w-[1440] mx-auto">
     <div className="flex flex-col gap-2">
@@ -16,7 +15,6 @@ export const FiltersSkeleton = () => (
     <div className="h-[44px] w-[136px] bg-gray-200 rounded-[12px]" />
   </div>
 );
-
 
 export const CarsGridSkeleton = () => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-12 w-[1440] mx-auto">
