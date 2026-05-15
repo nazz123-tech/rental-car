@@ -13,7 +13,7 @@ export default function CarsGrid() {
 
   const filters: CarFilters = {
     brand: searchParams.get("brand") || "",
-    rentalPrice: searchParams.get("rentalPrice") || "",
+    price: searchParams.get("rentalPrice") || "",
     minMileage: searchParams.get("minMileage") || "",
     maxMileage: searchParams.get("maxMileage") || "",
   };

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Car, CarFilters, BookingPayload } from '@/types';
+import { FilterData } from '@/types';
 
 interface FetchCarsArgs {
   pageParam?: number;
@@ -11,7 +12,7 @@ interface ApiResponse {
 
 }
 
-const API_URL = 'https://car-rental-api.goit.global';
+const API_URL = 'https://car-rental-api.goit.study';
 
 export const fetchCars = async ({ pageParam = 1, queryKey }: FetchCarsArgs): Promise<Car[]> => {
   const [, filters] = queryKey;
@@ -21,9 +22,9 @@ export const fetchCars = async ({ pageParam = 1, queryKey }: FetchCarsArgs): Pro
   const { data } = await axios.get<ApiResponse>(`${API_URL}/cars`, {
     params: {
       page: pageParam,
-      limit: 12,
+      perPage: 12,
       brand: filters.brand|| undefined,
-      rentalPrice: filters.rentalPrice || undefined,
+      price: filters.price || undefined,
       minMileage: filters.minMileage || undefined,
       maxMileage: filters.maxMileage || undefined,
     },
@@ -31,8 +32,8 @@ export const fetchCars = async ({ pageParam = 1, queryKey }: FetchCarsArgs): Pro
 
   return data.cars;
 };
-export const fetchBrands = async () : Promise<string[]>=>{
-    const response = await axios.get(`${API_URL}/brands`)
+export const fetchFilters = async () : Promise<FilterData>=>{
+    const response = await axios.get(`${API_URL}/cars/filters`)
     return response.data;
 }
 export const fetchCarById = async (id: string): Promise<Car> => {

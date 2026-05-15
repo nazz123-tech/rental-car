@@ -1,4 +1,4 @@
-export interface Car {
+export type Car = {
   id: string;
   year: number;
   brand: string;
@@ -7,19 +7,22 @@ export interface Car {
   img: string;
   description: string;
   fuelConsumption: string;
-  engineSize: string;
-  accessories: string[];
-  functionalities: string[];
-  rentalPrice: number;
+  engine: string;
+  features: string[];
+  rentalPrice: string;
   rentalCompany: string;
-  address:string;
+  location: {
+    country: string;
+    city: string;
+    address: string;
+  };
   rentalConditions: string[];
   mileage: number;
-}
+};
 
 export interface CarFilters {
   brand?: string;
-  rentalPrice?: string; 
+  price?: string; 
   minMileage?: string;
   maxMileage?: string;
 }
@@ -29,4 +32,11 @@ export interface BookingPayload {
   comment?:string;
 }
 
+export interface FilterData {
+  brands: string[];
+  price: {
+    min: number;
+    max: number;
+  };
+}
 

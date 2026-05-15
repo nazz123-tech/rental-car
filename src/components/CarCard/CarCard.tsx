@@ -8,10 +8,6 @@ import { useState } from "react";
 export default function CarCard({ car }: { car: Car }) {
   const [isFavourite, setIsFavourite]=useState(false);
 
-  const addressParts = (car.address || "").split(",").map(part => part.trim());
-  const address=addressParts[0]|| "";
-  const city = addressParts[1] || "";
-  const country = addressParts[2] || ""; 
 
   const toggleHeart = (e:React.MouseEvent)=>{
     e.preventDefault();
@@ -29,6 +25,7 @@ export default function CarCard({ car }: { car: Car }) {
           alt={`${car.brand} ${car.model}`}
           className="object-cover"
           fill
+          sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 25vw"
         />
         <button
           onClick={toggleHeart}
@@ -51,7 +48,7 @@ export default function CarCard({ car }: { car: Car }) {
       </div>
 
       <p className="text-xs text-gray-500 mb-[4] truncate">
-        {address} | {city} | {country}
+        {car.location.address} | {car.location.city} | {car.location.country}
       </p>
       <p className="text-xs text-gray-500 mb-6 truncate">
       {car.type} | {car.mileage}

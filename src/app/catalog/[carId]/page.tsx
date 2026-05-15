@@ -13,6 +13,7 @@ import { FaCarSide } from "react-icons/fa";
 import { BsFillFuelPumpFill } from "react-icons/bs";
 import { TbEngineFilled } from "react-icons/tb";
 
+
 type PageProps = {
   params: Promise<{ carId: string }>;
 };
@@ -33,16 +34,6 @@ const CarDetails = ({ params }: PageProps) => {
   if (isLoading) return <Loader />;
   if (isError || !car) notFound();
 
-  const carOptions = [
-    ...(car.accessories ?? []),
-    ...(car.functionalities ?? []),
-  ];
-  const addressParts = (car.address || "")
-    .split(",")
-    .map((part) => part.trim());
-
-  const city = addressParts[1] || "";
-  const country = addressParts[2] || "";
 
   return (
     <div className="flex flex-row gap-[72] mx-auto w-[1440] px-[120] pt-[84]">
@@ -67,7 +58,7 @@ const CarDetails = ({ params }: PageProps) => {
 
           <div className="flex flex-row gap-[16] mt-[8]">
             <p className="flex flex-row items-center font-medium text-main text-[16] leading-1.25">
-              <MdOutlinePlace /> {city}, {country}
+              <MdOutlinePlace /> {car.location.city}, {car.location.country}
             </p>
             <p className="font-medium text-main text-[16]">
               Mileage: {car.mileage} km
@@ -117,7 +108,7 @@ const CarDetails = ({ params }: PageProps) => {
               </li>
               <li className="font-medium text-[16] text-main leading-[1.25] flex flex-row items-center">
                 <TbEngineFilled className="mr-[8]" />
-                Engine: {car.engineSize}
+                Engine: {car.engine}
               </li>
             </ul>
           </div>
@@ -127,13 +118,13 @@ const CarDetails = ({ params }: PageProps) => {
               Accessories & Functionalities
             </h2>
             <ul className="flex flex-col gap-[16]">
-              {carOptions.map((option, index) => (
+              {car.features.map((feature, index) => (
                 <li
                   className="font-medium text-[16] text-main leading-[1.25] flex flex-row items-center"
                   key={index}
                 >
                   <MdDoneOutline className="mr-[8]" />
-                  {option}
+                  {feature}
                 </li>
               ))}
             </ul>

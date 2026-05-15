@@ -2,9 +2,11 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import { fetchBrands } from "@/api/carsApi";
-import { useState } from "react";
+import { fetchFilters } from "@/api/carsApi";
+import { useState, useMemo } from "react";
 import CustomSelect from "../CustomSelect/CustomSelect";
+import { FilterData } from "@/types";
+
 
 export default function FiltersBar() {
   const router = useRouter();
@@ -21,13 +23,22 @@ export default function FiltersBar() {
   const [maxMileage, setMaxMileage] = useState(searchParams.get("maxMileage") || "");
 
 
-  const { data: brands = [] } = useQuery<string[]>({
-    queryKey: ["brands"],
-    queryFn: fetchBrands,
+const { data } = useQuery<FilterData>({
+    queryKey: ["filters"],
+    queryFn: fetchFilters,
     staleTime: Infinity,
   });
 
-  const prices = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  const prices = useMemo(() => {
+    if (!data?.price) return [];
+    
+    const { min, max } = data.price;
+    const options = []; 
+    for (let i = min; i <= max; i += 10) {
+      options.push(i);
+    }
+    return options;
+  }, [data]);
 
   const handleSearch = () => {
     const params = new URLSearchParams();
@@ -46,7 +57,7 @@ export default function FiltersBar() {
       <CustomSelect
         label="Car brand"
         placeholder="Choose a brand"
-        options={brands}
+        options={data?.brands || []}
         value={brand}
         onChange={setBrand}
         width="204px"
