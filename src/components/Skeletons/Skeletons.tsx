@@ -18,7 +18,7 @@ export const FiltersSkeleton = () => (
 
 export const CarsGridSkeleton = () => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-12 w-[1440] mx-auto">
-    {[...Array(8)].map((_, i) => (
+    {[...Array(12)].map((_, i) => (
       <div key={i} className="flex flex-col gap-4 animate-pulse">
         <div className="w-full h-[268px] bg-gray-200 rounded-[14px]" />
         <div className="flex justify-between items-center">

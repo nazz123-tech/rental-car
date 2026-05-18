@@ -15,8 +15,8 @@ export default function CarCard({ car }: { car: Car }) {
     if(!isFavourite){
      toast.success("Added to favourites")
    }
-  }
-  // 
+  } 
+  
   return (
     <div className="flex flex-col h-full">
       <div className="relative h-64 w-full rounded-xl overflow-hidden mb-4 bg-gray-100">
